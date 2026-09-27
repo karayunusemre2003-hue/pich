@@ -1,38 +1,78 @@
 # Hero background prompt
 
-`assets/hero_bg.png` (1536x1024, text-free) was generated with Codex's built-in image_gen (variant B of two).
-The title, tagline, chips and logo are added on top in `index.html` so the typography stays crisp.
+`assets/hero_bg.png` (1536x1024, text-free) was generated with Codex's built-in image_gen (variant A of two).
+The pich lockup, headline, command chip and meta line are added on top in `index.html` so typography stays crisp.
 
 ## Brief given to Codex
 
 ```text
-Use your built-in image_gen tool (load the .system/imagegen skill first) to create ONE original hero image for the README of an open-source tool that turns a raw talking-head video into a finished vertical social-media Reel, with an AI editor and automatic quality checks. Do not create or edit any other files except saving the final PNG(s).
+Use your built-in image_gen tool to create ONE original hero background for the landing page of "a niche creator app": you drop in a raw talking-head video, the app hands back a finished vertical Reel (cuts, captions, cards, music, checked automatically). Do not create or edit any other files except saving the final PNGs.
 
-File name: hero_bg.png — landscape 3:2 (1536x1024).
+File: landscape 3:2 (1536x1024).
 
-Concept / story: raw footage becomes a polished vertical video. On the RIGHT half: a sleek modern smartphone, floating at a slight 3/4 angle, its screen glowing with a vertical video frame (abstract soft gradient scene with a few blank rounded caption bars and small blank glass cards — pure shapes, nothing readable). From the lower left toward the phone flows a curved ribbon of raw film/timeline clips (plain translucent rectangular frames with soft color gradients) being precisely cut by thin beams of light; the pieces reassemble cleanly as they enter the phone. Around the phone: a few floating frosted-glass panels (blank), a smooth audio waveform ribbon, and small glowing dots suggesting precision and checking.
+Look and feel: a polished consumer app launch visual, like the hero of a design-forward indie app on the App Store — confident, playful, premium, vivid. NOT a dark enterprise dashboard.
 
-Composition: the LEFT 45% of the image must be calm, dark, nearly empty negative space (smooth deep-navy gradient with a very subtle glow) — a title will be placed there later. Main subject weighted to the right third, strong readable silhouette, generous margins, nothing important within 60 px of the edges. Crop-safe to 2:1 (top and bottom 85 px may be cut).
+Scene (RIGHT 55% only): a sleek generic smartphone standing slightly tilted, its screen showing a vivid vertical video frame made of pure shapes: soft abstract gradient scene, two blank rounded caption bars (one white, one warm yellow #FFD64D), a small blank rounded card near the top. Beside/behind it, a short stack of raw clip tiles (plain translucent rectangles with blurred color) visibly getting "cleaned up": the tiles on the left are rough and uneven, the ones touching the phone are crisp and aligned. A few floating glossy 3D elements in the brand palette — a small rounded play-button pebble, a soft sparkle, a rounded checkmark badge shape, a tiny waveform ribbon — arranged with generous spacing, like objects orbiting the phone.
 
-Style: premium high-end 3D product render, cinematic, soft volumetric light, glass and satin materials, shallow depth of field, elegant and modern, like a flagship product launch keynote visual.
+Background: a smooth vivid gradient from electric blue (#3B5BFF) through indigo (#5B45FF) to violet (#9A3FFF), with soft light blooms and subtle depth; the LEFT 45% stays calm and uncluttered (smooth gradient only, slightly darker toward the left edge) because a logo and headline will sit there. Keep every important element between y=90 and y=934 (crop-safe to 2:1) and 60 px from the right edge.
 
-Palette: deep midnight navy (#0E1424 to #1B2440) background, electric blue (#2F5BFF) glow, icy cyan (#78D6FF) highlights, a few warm yellow (#FFD64D) accents on the caption bars and one light beam. High contrast, not muddy.
+Style: glossy soft 3D, rounded forms, frosted glass and satin plastic, gentle studio lighting with soft shadows, crisp and clean, high contrast between the white/yellow elements and the violet-blue background.
 
-Hard constraints: ABSOLUTELY NO text, letters, numbers, words, logos, brand marks, watermarks, app icons, readable UI, fake code, and NO people, faces or human silhouettes anywhere (including on the phone screen). The phone must be generic (no brand, no camera-bump branding).
+Hard constraints: NO text, letters, numbers, words, logos, brand marks, watermarks, app-store badges, readable UI, status bars, notches or dynamic islands; NO people, faces, hands or human silhouettes anywhere (including on the screen); the phone is fully generic.
 
-Make 2 variants with different compositions. Inspect each: if any contains letters/text-like marks, a face, or a brand logo, regenerate that one once. Save the chosen PNGs into the current directory as hero_bg_a.png and hero_bg_b.png. Finally print, for each: file path, the exact prompt you sent to image_gen, and the original generated_images path.
+Make 2 variants with different compositions. Inspect each; if one has letters/text-like marks, a face or a logo, regenerate it once. Save them in the current directory as hero_bg_a.png and hero_bg_b.png. Finally print, for each: file path, the exact prompt you sent to image_gen, and the original generated_images path.
 ```
 
-## Exact prompt Codex sent to image_gen
+## Codex output (exact image_gen prompts)
+
+### Variant A
+
+
+
+Exact final prompt:
 
 ```text
-Create ONE original README hero background image, exactly 1536x1024 pixels, landscape 3:2, for an open-source AI tool that transforms raw talking-head footage into a polished vertical social-media Reel using an AI editor and automatic quality checks. Depict the transformation without showing any person or face. Render it as a premium high-end 3D product-launch visual: cinematic, minimalist, elegant, soft volumetric illumination, frosted glass, satin metal, refined reflections, and shallow depth of field.
+Use case: stylized-concept
+Asset type: original landing-page hero background for a niche consumer creator app
+Output canvas: exactly 1536 x 1024 pixels, landscape 3:2.
 
-COMPOSITION: the LEFT 45 percent must remain almost completely empty and title-safe: an uninterrupted deep-midnight-navy gradient from #0E1424 to #1B2440 with one extremely subtle atmospheric glow and no floating objects. On the RIGHT half, place a sleek generic unbranded smartphone in a distinctly dynamic diagonal composition: floating slightly lower than center, rotated clockwise in a three-quarter perspective, with its top receding into depth and its glowing screen facing toward the empty left side. Keep the entire phone at least 60 pixels from all canvas edges and give it a strong readable silhouette. On the screen show only an abstract vertical-video frame: a smooth electric-blue-to-icy-cyan gradient field, several large solid blank rounded bars with two small warm-yellow #FFD64D accents, and a few blank translucent glass tiles. Every element is a pure featureless geometric shape, not a readable interface.
+Scene/backdrop: A smooth vivid full-bleed gradient flowing from electric blue #3B5BFF through indigo #5B45FF to violet #9A3FFF, with soft diffused light blooms, subtle depth, and a slightly darker left edge. The entire LEFT 45% of the canvas, x=0 through x=691, must be calm, smooth, empty gradient only. Absolutely no object, tile, particle, shadow, floor reflection, distinct glow blob, or visual clutter may enter x<720; reserve that space for a logo and headline.
 
-STORY AND MOTION: a thin ribbon of raw clip frames emerges from the lower-left direction but hugs the lower-middle corridor so the title area stays calm. It arcs upward BEHIND the phone in one broad C-shaped sweep, then curls forward and enters the lower side of the screen. The source frames are sparse translucent rectangles containing only blurred color gradients, without film perforations or thumbnails. Along the right-center transformation zone, several razor-thin icy-cyan light planes and exactly one warm-yellow beam slice the strip with geometric precision; fragments separate briefly, then snap into a clean aligned stack immediately before entering the phone. Add a single smooth audio-waveform ribbon orbiting behind the phone, three asymmetrically placed blank frosted-glass panels confined to the rightmost half, and a small ordered trail of glowing dots that implies automated checking and successful precision. Use depth, overlap, and controlled motion blur for a distinct circular-flow composition.
+Subject and composition: Deliberately inset the full composition inside a strict invisible safe box from x=740 to x=1400 and y=140 to y=880. No visible pixel of any object, tile, accent, shadow, or reflection may extend outside that box. A sleek fully generic smartphone stands prominently around x=1100, slightly tilted clockwise in three-quarter view, with a thin rounded satin-plastic frame and a clean full-bleed display. No notch, camera cutout, dynamic island, speaker slot, buttons, status bar, or manufacturer detail. The phone screen shows a vivid abstract vertical-video composition made only from pure nonfigurative shapes: a soft coral-to-cyan gradient scene, exactly two completely blank rounded caption bars in the lower half (one solid white, one warm yellow #FFD64D), and one small completely blank frosted rounded card near the top. Every bar and card is an empty geometric shape with no glyphs, strokes, icons, or markings.
 
-PALETTE AND FINISH: deep navy #0E1424 to #1B2440 background, electric blue #2F5BFF, icy cyan #78D6FF, minimal warm yellow #FFD64D. Crisp high contrast with localized glow, rich blacks, clean material separation, never murky. Flagship keynote render quality with polished glass and satin surfaces, generous margins, no clutter. Make it crop-safe to 2:1: keep all essential content between y=85 pixels and y=939 pixels, with no important element in the top or bottom 85 pixels. No border or poster frame.
+Behind and just left of the phone, show a short diagonal stack of raw clip tiles progressing toward the device. Start the first tile no farther left than x=740. The far-left tiles are plain translucent frosted rectangles with softly blurred color, slightly rough, irregular, and unevenly spaced; the tiles touching the phone become crisp, straight, evenly aligned, and polished. Keep this transformation visual and abstract, with no arrows, labels, controls, timelines, or interface symbols.
 
-ABSOLUTE HARD CONSTRAINTS: NO text, NO letters, NO numbers, NO words, NO logos, NO brand marks, NO watermarks, NO signatures, NO app icons, NO symbols, NO fake code, NO readable captions, NO readable UI, NO status bar, NO clock, NO battery or signal marks, NO camera interface, NO text-like microdetails, and NO typographic shapes. NO people, NO faces, NO eyes, NO heads, NO bodies, NO hands, and NO human silhouettes anywhere, including reflections and the phone screen. The phone must be fully generic and brandless, with no logo, no recognizable camera-bump branding, no notch, and no dynamic-island shape. Avoid any shape that could be mistaken for a character or logo.
+Add only four widely spaced glossy 3D accents orbiting close to the phone, all fully inside x=780..1380 and y=160..850: a small rounded triangular play-button pebble, a soft four-point sparkle, a rounded checkmark badge shape, and a tiny curved waveform ribbon. Use white, warm yellow #FFD64D, pale cyan, and violet accents. Keep them airy and secondary. Leave a conspicuously wide empty margin of at least 136 pixels between every object and the right canvas edge.
+
+Style/medium: polished design-forward indie App Store launch visual; confident, playful, premium, vivid; glossy soft 3D rendering; rounded forms; frosted glass and satin plastic; gentle studio lighting; soft contact shadows; crisp clean edges; strong white/yellow contrast against violet-blue. This is a joyful consumer app visual, never a dark enterprise dashboard.
+
+Spatial constraints: all important objects and every visible part of their shadows/reflections must be within x=740..1400 and y=140..880. The left 45% must remain smooth gradient only. The rightmost 136 pixels must remain empty gradient only. This also keeps everything safely within y=90..934 for a centered 2:1 crop.
+
+Hard constraints: NO text, letters, numbers, words, typographic marks, logos, brand marks, watermarks, signatures, app-store badges, readable UI, fake UI labels, status bars, notches, dynamic islands, people, faces, eyes, heads, bodies, hands, skin, human silhouettes, portraits, avatars, or character-like forms anywhere, including on the phone screen. The smartphone must be fully generic.
+```
+
+### Variant B
+
+
+
+Exact final prompt:
+
+```text
+Use case: stylized-concept
+Asset type: original landing-page hero background for a niche consumer creator app
+Output canvas: exactly 1536 x 1024 pixels, landscape 3:2.
+
+Scene/backdrop: A smooth vivid full-bleed gradient flowing from electric blue #3B5BFF through indigo #5B45FF to violet #9A3FFF, with broad soft light blooms, subtle atmospheric depth, and a slightly darker left edge. The entire LEFT 45% of the canvas, x=0 through x=691, must be calm, smooth, empty gradient only. Absolutely no object, tile, particle, shadow, floor reflection, distinct glow blob, or visual clutter may enter x<720; reserve that space for a logo and headline.
+
+Subject and composition: Deliberately inset the full composition inside a strict invisible safe box from x=740 to x=1400 and y=140 to y=880. No visible pixel of any object, tile, accent, shadow, or reflection may extend outside that box. Create a composition distinct from a standard centered phone: a sleek fully generic smartphone sits around x=1120 and slightly lower, standing in three-quarter view and tilted gently counterclockwise, with a slim rounded satin-plastic frame and clean full-bleed display. No notch, camera cutout, dynamic island, speaker slot, buttons, status bar, or manufacturer detail. The screen shows a vivid abstract vertical-video frame made only of pure nonfigurative shapes: a soft aqua-to-coral gradient scene, exactly two completely blank rounded caption bars staggered near the bottom (one solid white, one warm yellow #FFD64D), and one small completely blank rounded frosted card near the top. Every bar and card is an empty geometric block with no glyphs, strokes, icons, or markings.
+
+Behind the phone, arrange a compact stepped fan of raw clip tiles sweeping upward from the lower-left toward the device. Start the outermost tile no farther left than x=740. The outer tiles are translucent frosted rectangles with blurred color, subtly skewed and uneven; as the fan meets the phone, the rectangles become sharp, perfectly squared, evenly spaced, and aligned. The visual should imply automatic cleanup through order and finish alone. No arrows, labels, controls, timelines, or interface symbols.
+
+Add only four generously spaced glossy 3D accents arranged asymmetrically but kept close to the phone, all fully inside x=780..1380 and y=160..850: a small rounded triangular play-button pebble near the upper-right, a soft four-point sparkle above-left of the phone, a rounded checkmark badge shape near the lower-right, and a tiny floating waveform ribbon near the lower-left. Use white, warm yellow #FFD64D, pale cyan, and violet accents. Keep the objects sparse, floating, and secondary. Leave a conspicuously wide empty margin of at least 136 pixels between every object and the right canvas edge.
+
+Style/medium: polished design-forward indie App Store launch visual; confident, playful, premium, vivid; glossy soft 3D rendering; rounded forms; frosted glass and satin plastic; gentle studio lighting; soft shadows; crisp clean edges; strong white/yellow contrast against violet-blue. Joyful consumer app aesthetic, never a dark enterprise dashboard.
+
+Spatial constraints: all important objects and every visible part of their shadows/reflections must be within x=740..1400 and y=140..880. The left 45% must remain smooth gradient only. The rightmost 136 pixels must remain empty gradient only. This also keeps everything safely within y=90..934 for a centered 2:1 crop.
+
+Hard constraints: NO text, letters, numbers, words, typographic marks, logos, brand marks, watermarks, signatures, app-store badges, readable UI, fake UI labels, status bars, notches, dynamic islands, people, faces, eyes, heads, bodies, hands, skin, human silhouettes, portraits, avatars, or character-like forms anywhere, including on the phone screen. The smartphone must be fully generic.
 ```

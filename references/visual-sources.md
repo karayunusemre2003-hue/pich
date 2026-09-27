@@ -12,7 +12,7 @@ Design system: `assets/design/default.json` (tokens, layout zones, estimated Ins
 | Real-world scene (market, office, city) | Pexels photo via `python3 scripts/stock.py search/sheet/get` — sidecar JSON with author + license; no people/brands shown as endorsing anything | `image_card` (`provenance: "stock"`) |
 | Numbers / proof | Real source only; editable type | `png` prepared from data, cite it in the manifest |
 
-Logo library: the repo ships none. Build yours with `scripts/fetch_logos.py` — Simple Icons slugs (`python3 scripts/fetch_logos.py claude github youtube`) give `<slug>` (brand color) and `<slug>-white` (for dark backgrounds); `--brandfetch DOMAIN SLUG` (env `BRANDFETCH_API_KEY`) adds brands missing there, only when the brand owner has claimed the Brandfetch profile. Or add a file by hand from the brand's own press page with `{"file", "source_url", "verified_at", "notes"}` — the renderer refuses a key without them. `JVS_LOGOS_DIR` points to a library outside the skill folder.
+Logo library: the repo ships none. Build yours with `scripts/fetch_logos.py` — Simple Icons slugs (`python3 scripts/fetch_logos.py claude github youtube`) give `<slug>` (brand color) and `<slug>-white` (for dark backgrounds); `--brandfetch DOMAIN SLUG` (env `BRANDFETCH_API_KEY`) adds brands missing there, only when the brand owner has claimed the Brandfetch profile. Or add a file by hand from the brand's own press page with `{"file", "source_url", "verified_at", "notes"}` — the renderer refuses a key without them. `PICH_LOGOS_DIR` points to a library outside the skill folder.
 
 Safe zones: keep hooks/CTAs below ~220 px from the top and above the bottom 450 px, clear of the right 120 px in the lower half (`ig_ui_estimate` in the design preset; qa_reel warns). 
 

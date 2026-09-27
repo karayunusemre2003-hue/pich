@@ -1,9 +1,9 @@
-<p align="center"><img src="docs/hero.png" alt="Jarvis Video Studio — raw talking-head take to finished Reel, with automatic QA" width="100%" /></p>
+<p align="center"><img src="docs/hero.png" alt="pich — raw talking-head take to finished Reel, with automatic QA" width="100%" /></p>
 
-# <img src="assets/brand/logo-64.png" alt="" width="40" align="top" /> Jarvis Video Studio
+<p align="center"><img src="assets/brand/lockup-on-light.png" alt="pich" height="72" /></p>
 
-**Turn a raw talking-head clip into a finished vertical Reel — with an AI agent doing the editing and automatic QA
-catching what humans miss.** A [Claude Code](https://docs.claude.com/en/docs/claude-code) skill (works with any
+**Drop a raw video. Get a finished Reel.** Type `/pich video.mov` and your AI agent turns a raw talking-head clip into
+a finished vertical Reel/Short/TikTok — cuts, captions, cards, music — and checks it automatically before you post. A [Claude Code](https://docs.claude.com/en/docs/claude-code) skill (works with any
 agent that can run shell commands) plus plain Python/FFmpeg scripts.
 
 [Türkçe README](README.tr.md)
@@ -36,12 +36,25 @@ estimated Instagram UI overlap. Broken renders fail loudly, so you never post on
 ## Install as a Claude Code skill
 
 ```bash
-git clone https://github.com/<you>/jarvis-video-studio ~/.claude/skills/jarvis-video-studio
-~/.claude/skills/jarvis-video-studio/scripts/setup_models.sh
+git clone https://github.com/<you>/pich ~/.claude/skills/pich
+~/.claude/skills/pich/scripts/setup_models.sh
 ```
 
-Then give Claude a clip: *"Make a Reel from ~/Movies/take3.mov"*. The skill's `SKILL.md` walks the agent through
-speech map → transcript review → cuts → layers → preview → final → QA.
+Then, in Claude Code:
+
+```
+/pich ~/Movies/take3.mov
+```
+
+The agent builds the first pass automatically (cuts, verified captions placed away from the face, music, loudness),
+checks the words the speech models disagreed on, writes a hook and adds cards/icons/B-roll for what you actually say,
+renders, runs the QA and hands you the finished file. Add direction in plain words: `/pich take3.mov --lang tr, punchy, no music`.
+
+No agent? One command does the automatic pass:
+
+```bash
+python3 scripts/pich.py take3.mov --lang en --hook "TIP|Raw take|finished Reel" --cta "Follow|for more|Follow"
+```
 
 ## Try it without your own footage
 

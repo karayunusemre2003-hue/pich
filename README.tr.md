@@ -1,9 +1,9 @@
-<p align="center"><img src="docs/hero.png" alt="Jarvis Video Studio — ham konuşma videosundan bitmiş Reel'e, otomatik kalite kontrolüyle" width="100%" /></p>
+<p align="center"><img src="docs/hero.png" alt="pich — ham konuşma videosundan bitmiş Reel'e, otomatik kalite kontrolüyle" width="100%" /></p>
 
-# <img src="assets/brand/logo-64.png" alt="" width="40" align="top" /> Jarvis Video Studio
+<p align="center"><img src="assets/brand/lockup-on-light.png" alt="pich" height="72" /></p>
 
-**Ham bir konuşma videosunu, kurguyu yapay zekâ ajanının yaptığı ve otomatik kalite kontrolünün insanın gözden
-kaçırdıklarını yakaladığı, bitmiş dikey bir Reel'e dönüştürür.** Bir [Claude Code](https://docs.claude.com/en/docs/claude-code)
+**Ham videoyu at, bitmiş Reel'i al.** `/pich video.mov` yaz; yapay zekâ ajanın ham konuşma videosunu kesimi, altyazısı,
+kartları ve müziğiyle bitmiş dikey bir Reel/Short/TikTok'a çevirsin ve paylaşmadan önce otomatik kontrol etsin. Bir [Claude Code](https://docs.claude.com/en/docs/claude-code)
 skill'i (shell komutu çalıştırabilen her ajanla çalışır) ve sade Python/FFmpeg script'leri.
 
 [English README](README.md)
@@ -36,12 +36,25 @@ son kare, tahmini Instagram arayüzü çakışması. Bozuk render yüksek sesle 
 ## Claude Code skill'i olarak kurulum
 
 ```bash
-git clone https://github.com/<sen>/jarvis-video-studio ~/.claude/skills/jarvis-video-studio
-~/.claude/skills/jarvis-video-studio/scripts/setup_models.sh
+git clone https://github.com/<sen>/pich ~/.claude/skills/pich
+~/.claude/skills/pich/scripts/setup_models.sh
 ```
 
-Sonra Claude'a bir video ver: *"~/Movies/cekim3.mov'dan bir Reel yap"*. `SKILL.md` ajanı adım adım götürür:
-konuşma haritası → transkript kontrolü → kesim → katmanlar → önizleme → final → QA.
+Sonra Claude Code'da:
+
+```
+/pich ~/Movies/cekim3.mov
+```
+
+Ajan ilk geçişi otomatik kurar (kesim, doğrulanmış ve yüzden uzak altyazı, müzik, ses seviyesi), modellerin anlaşamadığı
+kelimeleri kontrol eder, hook'u yazar, söylediklerine göre kart/ikon/B-roll ekler, render alır, QA'dan geçirir ve bitmiş
+dosyayı verir. Yönlendirmeyi düz yazabilirsin: `/pich cekim3.mov --lang tr, tempolu, müziksiz`.
+
+Ajan yoksa tek komut otomatik geçişi yapar:
+
+```bash
+python3 scripts/pich.py cekim3.mov --lang tr --hook "İPUCU|Ham çekim|bitmiş Reel" --cta "Takip et|daha fazlası için|Takip et"
+```
 
 ## Kendi videon olmadan dene
 

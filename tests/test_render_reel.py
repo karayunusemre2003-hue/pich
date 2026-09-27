@@ -131,7 +131,7 @@ class RenderReelTest(unittest.TestCase):
             Image.new('RGBA', (256, 256), (255, 255, 255, 255)).save(lib / 'claude-white.png')
             (lib / 'manifest.json').write_text(json.dumps({'logos': {'claude-white': {
                 'file': 'claude-white.png', 'source_url': 'https://example.com/brand', 'verified_at': '2026-01-01'}}}))
-            os.environ['JVS_LOGOS_DIR'] = str(lib); self.addCleanup(os.environ.pop, 'JVS_LOGOS_DIR', None)
+            os.environ['PICH_LOGOS_DIR'] = str(lib); self.addCleanup(os.environ.pop, 'PICH_LOGOS_DIR', None)
             plan['layers'] = [{'kind': 'png', 'logo': 'claude-white', 'height': 96, 'y': 300, 'from': 'start', 'to': 'end'}]
             (p / 'plan.json').write_text(json.dumps(plan))
             subprocess.run([sys.executable, str(RENDER), str(p / 'plan.json'), str(p / 'x.mp4'), '--graph-only'], check=True, capture_output=True)
@@ -187,7 +187,7 @@ class RenderReelTest(unittest.TestCase):
             self.assertNotEqual(r.returncode, 0); self.assertIn('longer than the clip', r.stderr)
 
     def test_iconify_icon_layers(self):
-        try: urllib.request.urlopen(urllib.request.Request('https://api.iconify.design/lucide/bell.svg', headers={'User-Agent': 'jarvis-video-studio/0.5'}), timeout=10)
+        try: urllib.request.urlopen(urllib.request.Request('https://api.iconify.design/lucide/bell.svg', headers={'User-Agent': 'pich/0.7'}), timeout=10)
         except Exception: self.skipTest('Iconify API unreachable')
         with tempfile.TemporaryDirectory() as temp:
             p = Path(temp); src = make_source(p, 3); plan = reel_plan(src)
@@ -213,7 +213,7 @@ class RenderReelTest(unittest.TestCase):
             (p / 'plan.json').write_text(json.dumps(plan))
             subprocess.run([sys.executable, str(RENDER), str(p / 'plan.json'), str(p / 'pv.mp4'), '--preview'], check=True, capture_output=True)
             man = json.loads((p / 'pv.manifest.json').read_text())
-            self.assertIn('jarvis-video-studio/proxy', man['source'])
+            self.assertIn('pich/proxy', man['source'])
             self.assertEqual(man['edl'][0]['crop'][:2], [int(720 / 1.06) // 2 * 2, int(1280 / 1.06) // 2 * 2])
 
 

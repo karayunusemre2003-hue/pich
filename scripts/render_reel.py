@@ -87,7 +87,7 @@ def synth_sfx(name, path):
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", src, "-af", af, str(path)], check=True)
 
 
-PROXY_DIR = Path.home() / ".cache" / "jarvis-video-studio" / "proxy"
+PROXY_DIR = Path.home() / ".cache" / "pich" / "proxy"
 
 
 def make_proxy(src, w, h):
@@ -111,7 +111,7 @@ def load_design(name):
 
 def logo_png(key, height, out):
     """Verified logo from assets/logos/manifest.json, scaled to `height` px (keeps aspect)."""
-    d = Path(os.environ.get("JVS_LOGOS_DIR", g.SKILL_DIR / "assets" / "logos")).expanduser().resolve()
+    d = Path(os.environ.get("PICH_LOGOS_DIR", g.SKILL_DIR / "assets" / "logos")).expanduser().resolve()
     man = json.loads((d / "manifest.json").read_text())["logos"]
     e = man.get(key)
     if not e or not all(e.get(k) for k in ("file", "source_url", "verified_at")):

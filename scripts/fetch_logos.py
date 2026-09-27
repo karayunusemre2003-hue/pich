@@ -14,16 +14,16 @@ import datetime, json, os, re, subprocess, sys, tempfile, urllib.request
 from pathlib import Path
 
 SKILL = Path(__file__).resolve().parent.parent
-LOGOS = Path(os.environ.get("JVS_LOGOS_DIR", SKILL / "assets" / "logos")).expanduser()
+LOGOS = Path(os.environ.get("PICH_LOGOS_DIR", SKILL / "assets" / "logos")).expanduser()
 CDN = "https://cdn.jsdelivr.net/npm/simple-icons@latest"
 DEFAULT = ["claude", "anthropic", "googlegemini", "whatsapp", "instagram", "telegram", "tiktok", "youtube", "github",
            "obsidian", "n8n", "elevenlabs", "perplexity", "cursor", "meta", "x", "notion", "figma", "mistralai",
            "deepseek", "huggingface"]
-SVG2PNG = Path.home() / ".cache" / "jarvis-video-studio" / "svg2png"
+SVG2PNG = Path.home() / ".cache" / "pich" / "svg2png"
 
 
 def get(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "jarvis-video-studio/0.5"})
+    req = urllib.request.Request(url, headers={"User-Agent": "pich/0.7"})
     with urllib.request.urlopen(req, timeout=30) as r: return r.read()
 
 
@@ -60,7 +60,7 @@ def brandfetch(domain, slug):
     key = os.environ.get("BRANDFETCH_API_KEY")
     if not key: sys.exit("set BRANDFETCH_API_KEY (free key: https://developers.brandfetch.com)")
     req = urllib.request.Request(f"https://api.brandfetch.io/v2/brands/{domain}",
-                                 headers={"Authorization": f"Bearer {key}", "User-Agent": "jarvis-video-studio/0.5"})
+                                 headers={"Authorization": f"Bearer {key}", "User-Agent": "pich/0.7"})
     with urllib.request.urlopen(req, timeout=30) as r: d = _j.load(r)
     if not d.get("claimed"): sys.exit(f"{domain}: Brandfetch profile is NOT claimed by the brand — refusing; verify by eye and add by hand")
     logos = d.get("logos", [])

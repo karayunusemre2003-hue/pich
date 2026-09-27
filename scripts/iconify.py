@@ -5,7 +5,7 @@
     python3 iconify.py png lucide:bell out.png 128 [--color FFD64D]
 
 Used by render_reel.py for `{"kind": "icon", "icon": "lucide:bell", "size": 120, "color": "yellow"}`.
-SVG and collection info are cached in ~/.cache/jarvis-video-studio/iconify/. The collection's license and
+SVG and collection info are cached in ~/.cache/pich/iconify/. The collection's license and
 author are recorded with every render (manifest overlays) so attribution is available if a set needs it.
 Monotone icons take `color`; multicolor sets (emoji, logos) keep their own palette.
 """
@@ -16,13 +16,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from fetch_logos import svg_to_png  # noqa: E402
 
 API = "https://api.iconify.design"
-CACHE = Path.home() / ".cache" / "jarvis-video-studio" / "iconify"
+CACHE = Path.home() / ".cache" / "pich" / "iconify"
 NAME = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*:[a-z0-9]+(?:-[a-z0-9]+)*")
 MAX_BYTES = 512 * 1024  # an icon SVG is a few KB; refuse anything big before it reaches a native parser
 
 
 def _get(url, what):
-    req = urllib.request.Request(url, headers={"User-Agent": "jarvis-video-studio/0.5"})
+    req = urllib.request.Request(url, headers={"User-Agent": "pich/0.7"})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
             data = r.read(MAX_BYTES + 1)

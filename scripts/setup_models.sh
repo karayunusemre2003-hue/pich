@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Download the two whisper.cpp models transcribe.py / qa_reel.py use, and verify their SHA-1 (whisper.cpp models README).
 set -euo pipefail
-DIR="${JVS_MODELS_DIR:-$HOME/.local/share/whisper-models}"
+DIR="${PICH_MODELS_DIR:-$HOME/.local/share/whisper-models}"
 mkdir -p "$DIR"
 fetch() {  # name sha1
   local f="$DIR/$1"

@@ -14,7 +14,7 @@ names. So this script never returns a bare transcript. It flags:
 Output also lists speech phrases with their isolated text and edge-accurate times (caption source).
 Flagged proper names/verbs are cut or confirmed with the speaker — never guessed. Captions come from the
 reviewed text, timing from speech_map.py + these word times.
-Models: $JVS_MODELS_DIR (default ~/.local/share/whisper-models) — run scripts/setup_models.sh once.
+Models: $PICH_MODELS_DIR (default ~/.local/share/whisper-models) — run scripts/setup_models.sh once.
 """
 import argparse, difflib, json, os, re, subprocess, sys, tempfile, wave
 from pathlib import Path
@@ -22,9 +22,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from speech_map import SR, db, envelope, load_pcm, speech_intervals  # noqa: E402
 
-MODELS_DIR = Path(os.environ.get("JVS_MODELS_DIR", Path.home() / ".local/share/whisper-models")).expanduser()
-DEFAULT_MODEL = Path(os.environ.get("JVS_WHISPER_MODEL", MODELS_DIR / "ggml-large-v3-turbo-q5_0.bin")).expanduser()
-SECOND_MODEL = Path(os.environ.get("JVS_WHISPER_MODEL2", MODELS_DIR / "ggml-medium.bin")).expanduser()
+MODELS_DIR = Path(os.environ.get("PICH_MODELS_DIR", Path.home() / ".local/share/whisper-models")).expanduser()
+DEFAULT_MODEL = Path(os.environ.get("PICH_WHISPER_MODEL", MODELS_DIR / "ggml-large-v3-turbo-q5_0.bin")).expanduser()
+SECOND_MODEL = Path(os.environ.get("PICH_WHISPER_MODEL2", MODELS_DIR / "ggml-medium.bin")).expanduser()
 
 
 def whisper_words(wav, model, lang, start=None, end=None):
@@ -106,14 +106,14 @@ def main():
 
     cross(iso_words, "isolated")
     if len(models) > 1:
-        cross(whisper_words(tmp, models[1], a.lang, a.start, a.end), "model2")
+        words2 = whisper_words(tmp, models[1], a.lang, a.start, a.end); cross(words2, "model2")
 
     suspects = [{"i": i, "word": w["w"], "start": w["start"], "end": w["end"], "flags": w["flags"],
                  **{k: w[k] for k in ("isolated_alt", "model2_alt") if k in w}}
                 for i, w in enumerate(words) if w["flags"]]
 
     res = {"source": a.source, "models": [m.name for m in models], "lang": a.lang,
-           "text": " ".join(w["w"] for w in words), "phrases": iso_phr, "words": words, "suspects": suspects,
+           "text": " ".join(w["w"] for w in words), "phrases": iso_phr, "words": words, "words_model2": words2 if len(models) > 1 else [], "suspects": suspects,
            "status": "REVIEW" if suspects else "CLEAN",
            "note": "Word times drift ~0.1-0.4 s; snap cuts to speech_map.py edges. Resolve every suspect before captions."}
     Path(a.out).write_text(json.dumps(res, indent=1, ensure_ascii=False))

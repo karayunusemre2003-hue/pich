@@ -23,7 +23,7 @@ from PIL import Image, ImageDraw  # noqa: E402
 from speech_map import SR, db, load_pcm  # noqa: E402
 
 SKILL = Path(__file__).resolve().parent.parent
-FACE_BIN = Path.home() / ".cache" / "jarvis-video-studio" / "face_detect"
+FACE_BIN = Path.home() / ".cache" / "pich" / "face_detect"
 # Vision boxes run brow->chin. Grow up for hair, a little sideways; the mouth sits at ~65% of the box height.
 HAIR, SIDE, CORE = 0.25, 0.10, 0.72
 

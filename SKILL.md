@@ -1,16 +1,44 @@
 ---
-name: jarvis-video-studio
-description: Edit a talking-head video into a finished vertical Reel/Short/TikTok — verified transcript, speech-safe cuts, captions, hook, cards and icons, step slide or Hyperframes motion segment with live PiP, stock B-roll, ducked music, loudness — from one plan.json, then check it automatically (face overlap, captions vs speech, music masking, A/V sync, loudness). Use when someone gives you camera footage and wants a Reel, or asks to add captions, B-roll, a hook or a motion segment to a talking-head clip.
-version: 0.6.1
+name: pich
+description: Turn a raw talking-head video into a finished vertical Reel/Short/TikTok. Use when the user types /pich <video>, gives you camera footage and wants a finished video, or asks to add captions, cuts, a hook, cards, B-roll or a motion segment to a talking-head clip. One command makes a complete, checked video (speech-safe cuts, verified captions, hook, cards/icons, music, loudness) and automatic QA (face overlap, captions vs speech, music masking, sync, loudness).
+version: 0.7.0
 license: MIT
 ---
 
-# Jarvis Video Studio
+# pich
 
-Turns camera footage into a 1080×1920 Reel. You (the agent) make the editorial decisions; the scripts do the
-deterministic work and refuse unsafe input. Nothing is published or sent anywhere.
+Raw talking-head video in, finished vertical Reel out. You (the agent) make the editorial decisions; the scripts do
+the deterministic work and refuse unsafe input. Nothing is published or sent anywhere.
 
 `<skill-dir>` below is the folder containing this file.
+
+## /pich — autopilot
+
+`/pich <video> [--lang tr|en|…] [--music FILE] [--no-broll] [--tone …] [free-text direction]`
+
+Deliver a finished video without asking unless something is genuinely unknowable:
+
+1. **First pass (automatic).** `python3 <skill-dir>/scripts/pich.py <video> --out-dir <project> --lang <lang> --plan-only`
+   → `plan.json` (cuts, verified captions placed away from the face, music, loudness) + `review.md`.
+   Project dir default: `pich-<video-stem>/` next to the video.
+2. **Review the words.** Read `review.md` and `transcript.json`. Fix caption text in `plan.json` where the context
+   makes the right word certain; if a name, number or claim is still uncertain, ask the user once (list all of them
+   together) or cut that caption — never guess.
+3. **Make it a Reel.** Edit `plan.json` (schema: [references/render-reel-plan.md](references/render-reel-plan.md)):
+   - a hook card on frame 0 written from the video's own claim (`hook_card`, fits 860 px — the renderer rejects overflow),
+   - 2–5 cards/icons for the specific ideas that are spoken ([references/visual-sources.md](references/visual-sources.md)),
+   - numbers or steps → step slide, or a Hyperframes motion segment with live PiP ([references/motion-segments.md](references/motion-segments.md)),
+   - a concrete scene → 1.5–3 s stock cutaway if `PEXELS_API_KEY` is set (skip with `--no-broll`),
+   - a CTA on the quiet tail if the speaker leaves ~1.5 s at the end.
+   Restraint beats decoration: every layer answers a spoken idea; nothing covers the eyes or mouth.
+4. **Render + check.** Preview (`render_reel.py plan.json preview.mp4 --preview`), look at the layer boundaries, then
+   final (`render_reel.py plan.json <stem>-pich.mp4`) and `qa_reel.py <final> --plan plan.json`. Fix every FAIL and
+   re-render; mention every WARN.
+5. **Hand over.** Tell the user the file path, length, what you added, and what they should check by ear/eye
+   (QA warnings, words you were unsure of). Don't post or send it anywhere.
+
+Without an agent: `python3 <skill-dir>/scripts/pich.py video.mov --lang tr --hook "EYEBROW|from|to" --cta "line|line|pill"`
+renders the first pass straight to a checked video.
 
 ## Procedure
 
@@ -55,6 +83,7 @@ Voice chain → music ducked by sidechain (≈ -24 dB for tracks with drums) →
 
 | Script | Role |
 |---|---|
+| `pich.py`, `auto_plan.py` | one-command pipeline; automatic first-pass plan with voted captions + review list |
 | `render_reel.py` | plan.json → single-pass FFmpeg render; design presets, logos, icons, B-roll, proxy previews |
 | `reel_graphics.py` | PIL templates: captions, hook/info card, step slide, image card, badge, wordmark, CTA |
 | `qa_reel.py` + `face_detect.swift` | automatic QA report (face check needs macOS; skipped with a warning elsewhere) |

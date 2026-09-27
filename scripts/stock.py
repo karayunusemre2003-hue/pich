@@ -24,12 +24,12 @@ def key():
 
 
 def api(path, **q):
-    req = urllib.request.Request(f"{API}{path}?{urllib.parse.urlencode(q)}", headers={"Authorization": key(), "User-Agent": "jarvis-video-studio/0.5"})
+    req = urllib.request.Request(f"{API}{path}?{urllib.parse.urlencode(q)}", headers={"Authorization": key(), "User-Agent": "pich/0.7"})
     with urllib.request.urlopen(req, timeout=30) as r: return json.load(r)
 
 
 def download(url, dest):
-    req = urllib.request.Request(url, headers={"User-Agent": "jarvis-video-studio/0.5"})
+    req = urllib.request.Request(url, headers={"User-Agent": "pich/0.7"})
     with urllib.request.urlopen(req, timeout=120) as r, open(dest, "wb") as f:
         while chunk := r.read(1 << 20): f.write(chunk)
 
