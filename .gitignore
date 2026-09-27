@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+build/
+build_*/
+examples/demo/source.mp4
+examples/demo/broll.mp4
+examples/demo/plan.json
+*.autoqa.json
+*.autoqa.jpg
+*.manifest.json
+*.qa.json
+*.mp4
+!tests/fixtures/*.mp4
+.DS_Store
+assets/logos/*.png

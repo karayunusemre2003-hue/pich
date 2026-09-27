@@ -1,0 +1,98 @@
+{
+  "_note": "Default Reel design system. Zones are normalized [x, y, w, h] of the 1080x1920 frame. ig_ui_estimate = conservative consensus of published Reels safe-zone guides (2026-09-27): keep clear top 220px, bottom 450px, right 120px (action rail, lower half), left 60px. Sources: hopperhq.com/blog/instagram-reel-size (108/320/60/120, Reels-specific), outfy.com/blog/instagram-safe-zone, campaignswift.com/blog/instagram-safe-zone-sizes (220 top / 430-450 bottom). Instagram changes its UI; qa_reel.py only WARNS on these — check on a real phone.",
+  "tokens": {
+    "ink": [
+      16,
+      19,
+      26
+    ],
+    "navy": [
+      20,
+      24,
+      33
+    ],
+    "accent": [
+      47,
+      91,
+      255
+    ],
+    "paper": [
+      243,
+      241,
+      236
+    ],
+    "yellow": [
+      255,
+      214,
+      77
+    ],
+    "teal": [
+      120,
+      214,
+      255
+    ],
+    "chip_icon": [
+      140,
+      168,
+      255
+    ],
+    "eyebrow": [
+      150,
+      175,
+      255
+    ]
+  },
+  "font": "fonts/Manrope.ttf",
+  "zones": {
+    "hook": [
+      0.08,
+      0.03,
+      0.84,
+      0.12
+    ],
+    "caption_lane": [
+      0.0,
+      0.66,
+      1.0,
+      0.13
+    ],
+    "cta": [
+      0.06,
+      0.62,
+      0.88,
+      0.16
+    ],
+    "top_popup": [
+      0.1,
+      0.02,
+      0.8,
+      0.3
+    ]
+  },
+  "ig_ui_estimate": {
+    "top_bar": [
+      0.0,
+      0.0,
+      1.0,
+      0.1146
+    ],
+    "bottom_meta": [
+      0.0,
+      0.7656,
+      1.0,
+      0.2344
+    ],
+    "right_actions": [
+      0.8889,
+      0.4,
+      0.1111,
+      0.3656
+    ],
+    "left_edge": [
+      0.0,
+      0.0,
+      0.0556,
+      1.0
+    ]
+  }
+}

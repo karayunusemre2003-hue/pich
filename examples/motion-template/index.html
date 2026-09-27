@@ -1,0 +1,105 @@
+<!doctype html>
+<!--
+  Brag-style motion segment template for a talking-head Reel (Hyperframes + GSAP), 1080x1920, 7 s, no audio.
+  Keyframes are in seconds from the segment start: set them to the moments the speaker says each step
+  (render_reel.py manifest -> slide.steps / caption times). The right side (x 584-1024, y 540-1140) is left empty:
+  the renderer puts the live camera there when you use it as {"kind": "broll", "mode": "full_pip"}.
+  Render:  npx hyperframes check && npx hyperframes render --quality high --output ../segment.mp4
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Break-even motion segment (template)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Manrope"; src: url("assets/Manrope.ttf") format("truetype"); font-weight: 200 800; }
+      :root { --bg: #0f1624; --card: #16203a; --line: #2a3a5c; --ink: #ffffff; --muted: #9fb0c8; --teal: #78d6ff; --yellow: #ffd64d; --green: #5ee6a0; --accent: #2f5bff; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); font-family: "Manrope", sans-serif; color: var(--ink); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--bg); }
+      .clip { position: absolute; inset: 0; }
+      #orb { position: absolute; left: 560px; top: -300px; width: 700px; height: 700px; border-radius: 50%;
+             background: radial-gradient(circle, rgba(47, 91, 255, 0.42) 0%, rgba(47, 91, 255, 0.12) 45%, rgba(47, 91, 255, 0) 70%); }
+      #eyebrow { position: absolute; left: 64px; top: 250px; font-size: 28px; font-weight: 700; letter-spacing: 0.18em; color: var(--teal); }
+      #title { position: absolute; left: 64px; top: 296px; margin: 0; font-size: 80px; font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; }
+      #title span { color: var(--yellow); }
+      .card { position: absolute; left: 56px; width: 492px; height: 140px; border-radius: 26px; background: var(--card);
+              border: 3px solid var(--line); padding: 20px 24px; display: flex; align-items: center; gap: 20px; }
+      .card img { width: 60px; height: 60px; flex: none; }
+      .card .lbl { font-size: 26px; font-weight: 700; color: var(--muted); }
+      .card .big { font-size: 54px; font-weight: 800; line-height: 1.05; font-variant-numeric: tabular-nums; }
+      #c1 { top: 540px; } #c2 { top: 700px; } #c3 { top: 860px; height: 176px; } #c4 { top: 1056px; }
+      #c2 .big { color: var(--yellow); }
+      #c3 { display: block; }
+      #c3 .row { display: flex; align-items: center; gap: 20px; }
+      #bar { position: relative; margin-top: 16px; height: 22px; border-radius: 11px; background: #22304f; overflow: hidden; }
+      #fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; border-radius: 11px; transform-origin: left center;
+              background: linear-gradient(90deg, var(--teal), var(--yellow)); }
+      #ticks { position: absolute; inset: 0; display: flex; justify-content: space-between; padding: 0 6px; }
+      #ticks i { width: 2px; background: rgba(15, 22, 36, 0.55); }
+      #c4 .big { color: var(--green); }
+      #chart { position: absolute; right: 22px; top: 22px; width: 150px; height: 96px; }
+      #chart path { fill: none; stroke: var(--green); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="7">
+      <section id="scene" class="clip" data-start="0" data-duration="7" data-track-index="0">
+        <div id="orb"></div>
+        <div id="eyebrow">THE MATH</div>
+        <h1 id="title">When does it<br /><span>pay off?</span></h1>
+
+        <div class="card" id="c1"><img src="assets/hourglass.svg" alt="" />
+          <div><div class="lbl">Setup</div><div class="big"><span id="n1">0</span> hours</div></div></div>
+
+        <div class="card" id="c2"><img src="assets/timer.svg" alt="" />
+          <div><div class="lbl">Saved every day</div><div class="big">+<span id="n2">0</span> min</div></div></div>
+
+        <div class="card" id="c3">
+          <div class="row"><img src="assets/calendar-check.svg" alt="" />
+            <div><div class="lbl">Break-even</div><div class="big">day <span id="n3">1</span></div></div></div>
+          <div id="bar"><div id="fill"></div><div id="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </div>
+
+        <div class="card" id="c4"><img src="assets/trending-up.svg" alt="" />
+          <div><div class="lbl">After that</div><div class="big">profit</div></div>
+          <svg id="chart" viewBox="0 0 150 96"><path id="line" d="M6 88 L44 70 L78 74 L110 40 L144 8" /></svg></div>
+      </section>
+    </div>
+    <script>
+      (function () {
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+        const count = (sel, from, to, at, dur) => {
+          const o = { v: from }, el = document.querySelector(sel);
+          tl.to(o, { v: to, duration: dur, ease: "power2.out", onUpdate: () => { el.textContent = Math.round(o.v); } }, at);
+        };
+        // title
+        tl.fromTo("#orb", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: "sine.out" }, 0);
+        tl.fromTo("#eyebrow", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 0.05);
+        tl.fromTo("#title", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 0.1);
+        // step 1 (0.0 s): setup 3 hours — the counter lands with "3 saat" (~0.9 s)
+        tl.fromTo("#c1", { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 0.2);
+        count("#n1", 0, 3, 0.6, 0.6);
+        // step 2 (1.67 s): +15 min every day
+        tl.fromTo("#c2", { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 1.67);
+        count("#n2", 0, 15, 1.9, 0.7);
+        tl.to("#c1", { opacity: 0.55, duration: 0.3 }, 1.67);
+        // step 3 (3.40 s): break-even — days 1 -> 12, landing with "12 günde" (~4.3 s)
+        tl.fromTo("#c3", { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 3.4);
+        tl.to("#c2", { opacity: 0.55, duration: 0.3 }, 3.4);
+        tl.fromTo("#fill", { scaleX: 0.02 }, { scaleX: 1, duration: 1.1, ease: "power1.inOut" }, 3.5);
+        count("#n3", 1, 12, 3.5, 1.1);
+        tl.to("#c3", { borderColor: "#ffd64d", duration: 0.25 }, 4.55);
+        // step 4 (5.50 s): after that, profit
+        tl.fromTo("#c4", { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 5.5);
+        tl.to("#c3", { opacity: 0.55, borderColor: "#2a3a5c", duration: 0.3 }, 5.5);
+        tl.fromTo("#line", { strokeDasharray: 240, strokeDashoffset: 240 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.out" }, 5.7);
+        // slow drift so the frame never freezes
+        tl.to("#orb", { x: -60, y: 50, duration: 7, ease: "sine.inOut" }, 0);
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
