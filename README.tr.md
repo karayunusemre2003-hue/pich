@@ -1,4 +1,6 @@
-# Jarvis Video Studio
+<p align="center"><img src="docs/hero.png" alt="Jarvis Video Studio — ham konuşma videosundan bitmiş Reel'e, otomatik kalite kontrolüyle" width="100%" /></p>
+
+# <img src="assets/brand/logo-64.png" alt="" width="40" align="top" /> Jarvis Video Studio
 
 **Ham bir konuşma videosunu, kurguyu yapay zekâ ajanının yaptığı ve otomatik kalite kontrolünün insanın gözden
 kaçırdıklarını yakaladığı, bitmiş dikey bir Reel'e dönüştürür.** Bir [Claude Code](https://docs.claude.com/en/docs/claude-code)

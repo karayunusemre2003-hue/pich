@@ -1,4 +1,6 @@
-# Jarvis Video Studio
+<p align="center"><img src="docs/hero.png" alt="Jarvis Video Studio — raw talking-head take to finished Reel, with automatic QA" width="100%" /></p>
+
+# <img src="assets/brand/logo-64.png" alt="" width="40" align="top" /> Jarvis Video Studio
 
 **Turn a raw talking-head clip into a finished vertical Reel — with an AI agent doing the editing and automatic QA
 catching what humans miss.** A [Claude Code](https://docs.claude.com/en/docs/claude-code) skill (works with any

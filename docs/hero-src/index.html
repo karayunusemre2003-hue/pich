@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, height=640" />
+    <title>Jarvis Video Studio — hero</title>
+    <!-- README hero / GitHub social preview (1280x640). Render: npx hyperframes render --output ../hero.mp4, then take frame 1. -->
+    <style>
+      @font-face { font-family: "Manrope"; src: url("assets/Manrope.ttf") format("truetype"); font-weight: 200 800; }
+      :root { --bg: #0e1424; --bg2: #1b2440; --card: #16203a; --line: #2a3a5c; --ink: #fff; --muted: #9fb0c8;
+              --yellow: #ffd64d; --teal: #78d6ff; --green: #5ee6a0; --accent: #2f5bff; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: "Manrope", sans-serif; color: var(--ink); background: var(--bg); }
+      #root { position: relative; width: 1280px; height: 640px; overflow: hidden;
+              background: radial-gradient(900px 600px at 88% -10%, rgba(47, 91, 255, 0.45), transparent 60%),
+                          linear-gradient(135deg, var(--bg2), var(--bg)); }
+      .clip { position: absolute; inset: 0; }
+      /* left: brand */
+      #logo { position: absolute; left: 72px; top: 86px; width: 104px; height: 104px; }
+      #name { position: absolute; left: 72px; top: 214px; font-size: 64px; font-weight: 800; line-height: 1.02; letter-spacing: -0.02em; }
+      #name span { color: var(--yellow); }
+      #tag { position: absolute; left: 74px; top: 372px; width: 600px; font-size: 25px; font-weight: 600; line-height: 1.4; color: var(--muted); }
+      #tag b { color: var(--ink); font-weight: 800; }
+      #chips { position: absolute; left: 72px; top: 496px; display: flex; gap: 12px; }
+      .chip { padding: 10px 18px; border-radius: 999px; border: 2px solid var(--line); background: rgba(22, 32, 58, 0.8);
+              font-size: 18px; font-weight: 700; color: #cfe0f5; }
+      /* right: phone */
+      #phone { position: absolute; left: 690px; top: 40px; width: 322px; height: 572px; border-radius: 46px; padding: 12px;
+               background: #05080f; box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.8), 0 0 0 2px #2a3a5c; }
+      #screen { position: relative; width: 100%; height: 100%; border-radius: 36px; overflow: hidden;
+                background: linear-gradient(180deg, #dfe3ea 0%, #c3c9d3 100%); }
+      #person { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 290px; height: 348px; }
+      #hook { position: absolute; left: 18px; right: 18px; top: 40px; padding: 10px 14px; border-radius: 14px; background: rgba(20, 24, 33, 0.94); }
+      #hook .eb { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; color: #96afff; }
+      #hook .ln { font-size: 17px; font-weight: 800; margin-top: 3px; }
+      #hook .ln span { color: var(--yellow); }
+      #icons { position: absolute; top: 118px; left: 0; right: 0; display: flex; justify-content: center; gap: 14px; }
+      .ic { width: 50px; height: 50px; border-radius: 14px; background: rgba(20, 24, 33, 0.94); display: grid; place-items: center; }
+      .ic img { width: 28px; height: 28px; }
+      #cap { position: absolute; left: 0; right: 0; top: 470px; text-align: center; font-size: 21px; font-weight: 800;
+             -webkit-text-stroke: 5px #0c0c10; paint-order: stroke fill; }
+      #cap span { color: var(--yellow); }
+      /* QA card */
+      #qa { position: absolute; left: 952px; top: 238px; width: 300px; padding: 18px 20px; border-radius: 22px;
+            background: rgba(14, 20, 36, 0.96); border: 2px solid #28405e; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7); }
+      #qa .hd { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 800; letter-spacing: 0.12em; color: var(--muted); }
+      #qa .pass { color: #0e1424; background: var(--green); padding: 4px 10px; border-radius: 999px; letter-spacing: 0.06em; font-size: 13px; }
+      .row { display: flex; align-items: center; gap: 12px; margin-top: 12px; font-size: 17px; font-weight: 700; }
+      .row img { width: 22px; height: 22px; }
+      .row em { margin-left: auto; font-style: normal; color: var(--green); font-weight: 800; font-size: 15px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1280" data-height="640" data-duration="1">
+      <section id="hero" class="clip" data-start="0" data-duration="1" data-track-index="0">
+        <img id="logo" src="assets/logo.svg" alt="" />
+        <div id="name">Jarvis<br /><span>Video Studio</span></div>
+        <div id="tag">Raw talking-head take <b>→</b> finished vertical Reel.<br /><b>An AI agent edits, automatic QA checks.</b></div>
+        <div id="chips"><div class="chip">Claude Code skill</div><div class="chip">FFmpeg</div><div class="chip">Hyperframes</div><div class="chip">MIT</div></div>
+
+        <div id="phone"><div id="screen">
+          <svg id="person" viewBox="0 0 250 300" aria-hidden="true">
+            <defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a93a6"/><stop offset="1" stop-color="#5d6577"/></linearGradient></defs>
+            <ellipse cx="125" cy="96" rx="52" ry="62" fill="url(#sk)"/>
+            <path d="M0 300 C6 212 60 172 125 172 C190 172 244 212 250 300 Z" fill="#1c1f27"/>
+          </svg>
+          <div id="hook"><div class="eb">AI</div><div class="ln">Delegate it <span>→ worth it?</span></div></div>
+          <div id="icons"><div class="ic"><img src="assets/message-square.svg" alt="" /></div><div class="ic"><img src="assets/sheet.svg" alt="" /></div><div class="ic"><img src="assets/bot.svg" alt="" /></div></div>
+          <div id="cap">saves <span>15 minutes</span> a day</div>
+        </div></div>
+
+        <div id="qa">
+          <div class="hd">AUTO QA <span class="pass">PASS</span></div>
+          <div class="row"><img src="assets/qa-scan-face.svg" alt="" />Face clear<em>0 overlaps</em></div>
+          <div class="row"><img src="assets/qa-captions.svg" alt="" />Captions = speech<em>16/16</em></div>
+          <div class="row"><img src="assets/qa-audio-lines.svg" alt="" />A/V sync<em>0 ms</em></div>
+          <div class="row"><img src="assets/qa-gauge.svg" alt="" />Loudness<em>-14 LUFS</em></div>
+        </div>
+      </section>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = { duration: () => 1, seek: () => {}, pause: () => {}, time: () => 0, totalDuration: () => 1, progress: () => 0, play: () => {}, paused: () => true };
+    </script>
+  </body>
+</html>
