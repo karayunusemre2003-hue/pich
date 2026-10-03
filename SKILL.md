@@ -63,6 +63,8 @@ renders the first pass straight to a checked video.
    - CTA card on a quiet tail segment.
 5. **Hook A/B (optional).** `python3 <skill-dir>/scripts/hook_variants.py plan.json variants.json --out-dir DIR`
    → 3 s previews in parallel + a side-by-side `hooks.jpg`; `--pick NAME` writes the final plan.
+   Write one warning, one result and one curiosity hook; sound cues and generated-shot prompts follow the same
+   reference: [hooks-and-sound](references/hooks-and-sound.md).
 6. **Preview, then final.** `python3 <skill-dir>/scripts/render_reel.py plan.json preview.mp4 --preview [--until S]`
    (540p; 4K sources use a cached half-res proxy). Look at every layer boundary, then render the final under a new
    name. The renderer refuses to overwrite and exits non-zero if frame count or A/V length is off.
